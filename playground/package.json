@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "my-module-playground",
+  "name": "mjsz-vbr-elements-nuxt-playground",
   "type": "module",
   "scripts": {
     "dev": "nuxi dev",
@@ -9,5 +9,9 @@
   },
   "devDependencies": {
     "nuxt": "latest"
+  },
+  "dependencies": {
+    "@mjsz-vbr-elements/core": "^2.1.6",
+    "@mjsz-vbr-elements/elements": "^2.1.6"
   }
 }
