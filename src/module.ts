@@ -10,6 +10,9 @@ import { readPackageJSON } from "pkg-types";
 // Module options TypeScript interface definition
 export interface ModuleOptions {
   apiKey: string;
+  gameResolver?: () => string | string;
+  teamResolver?: () => string | string;
+  playerResolver?: () => string | string;
 }
 
 export interface Modules {
