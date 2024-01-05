@@ -61,7 +61,7 @@ export default defineNuxtModule<ModuleOptions>({
     addTemplate({
       filename: "mjszVbrElements.imports.mjs",
       getContents: () => generateImports(options, modules),
-      write: false,
+      write: true,
     });
 
     addPlugin({ src: resolve("./runtime/plugin"), mode: "client" });
