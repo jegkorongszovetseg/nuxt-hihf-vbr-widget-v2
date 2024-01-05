@@ -1,6 +1,6 @@
 {
   "name": "@mjsz-vbr-elements/nuxt",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Nuxt module for Data visualization for MJSZ VBR",
   "license": "MIT",
   "type": "module",
