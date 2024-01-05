@@ -1,19 +1,21 @@
-// import { readFile } from "fs/promises";
+import { readFile } from "fs/promises";
 import {
   defineNuxtModule,
   createResolver,
   addPlugin,
   addTemplate,
+  resolvePath,
+  addComponent,
+  addImportsSources,
 } from "@nuxt/kit";
 // import * as core from "@mjsz-vbr-elements/core";
-// import defu from "defu";
-// import { findExportNames } from "mlly";
+import defu from "defu";
+import { findExportNames } from "mlly";
 import { readPackageJSON } from "pkg-types";
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
   apiKey: string;
-  // modules: Record<string, any>[];
 }
 
 const { resolve } = createResolver(import.meta.url);
@@ -30,8 +32,7 @@ export default defineNuxtModule<ModuleOptions>({
     apiKey: "",
   },
   async setup(options, nuxt) {
-    console.log("options:", options);
-    // options.modules[0]?.register();
+    // console.log("options:", options);
     // options.modules = [...new Set(options.modules)];
 
     // for (const name in core) {
@@ -42,13 +43,22 @@ export default defineNuxtModule<ModuleOptions>({
     //   });
     // }
 
+    // nuxt.options.vite.resolve = defu(nuxt.options.vite.resolve, {
+    //   dedupe: ['vue'],
+    // })
+
+    // nuxt.options.build.transpile.push(/@mjsz-vbr-elements\/core/);
+
+    // addImportsSources({
+    //   from: "@mjsz-vbr-elements/core",
+    //   imports: ["utils", "components", "compsables", "utils", "columns"],
+    // });
+
     const pkg = await readPackageJSON(nuxt.options.rootDir);
     const coreDeps = Object.keys({
       ...pkg.dependencies,
       ...pkg.devDependencies,
     }).filter((d) => d.startsWith("@mjsz-vbr-elements/"));
-
-    // console.log({ coreDeps });
 
     const modules = [];
 
@@ -58,8 +68,8 @@ export default defineNuxtModule<ModuleOptions>({
         mod === "@mjsz-vbr-elements/nuxt"
       )
         continue;
-      // const entry = await resolvePath(mod);
-      // if (entry === mod) continue;
+      const entry = await resolvePath(mod);
+      if (entry === mod) continue;
 
       // const imports = findExportNames(await readFile(entry, "utf8"));
 
@@ -96,15 +106,15 @@ export default defineNuxtModule<ModuleOptions>({
 });
 
 const generateImports = ({ apiKey }: ModuleOptions, modules) => `
-  import { createConfig } from "@mjsz-vbr-elements/core";
+  import MjszVbrElementsCore from "@mjsz-vbr-elements/core";
 
   ${modules
-    ?.map(
-      (module) => `import ${module.name} from '${module.package}'`
-    )
+    ?.map((module) => `import ${module.name} from '${module.package}'`)
     .join("\n")}
 
-  const create = () => createConfig({ modules: [${modules.map((module)=> module.name)}], apiKey: '${apiKey}'})
+  const create = (vueApp) => vueApp.use(MjszVbrElementsCore, { modules: [${modules.map(
+    (module) => module.name
+  )}], apiKey: '${apiKey}'})
 
   export default create;
 `;

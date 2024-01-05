@@ -11,7 +11,7 @@
     "nuxt": "latest"
   },
   "dependencies": {
-    "@mjsz-vbr-elements/core": "^2.1.6",
-    "@mjsz-vbr-elements/elements": "^2.1.6"
+    "@mjsz-vbr-elements/core": "^2.2.1",
+    "@mjsz-vbr-elements/elements": "^2.2.1"
   }
 }
