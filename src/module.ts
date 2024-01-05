@@ -1,21 +1,20 @@
-import { readFile } from "fs/promises";
 import {
   defineNuxtModule,
   createResolver,
   addPlugin,
   addTemplate,
   resolvePath,
-  addComponent,
-  addImportsSources,
 } from "@nuxt/kit";
-// import * as core from "@mjsz-vbr-elements/core";
-import defu from "defu";
-import { findExportNames } from "mlly";
 import { readPackageJSON } from "pkg-types";
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
   apiKey: string;
+}
+
+export interface Modules {
+  name: string;
+  package: any;
 }
 
 const { resolve } = createResolver(import.meta.url);
@@ -32,35 +31,13 @@ export default defineNuxtModule<ModuleOptions>({
     apiKey: "",
   },
   async setup(options, nuxt) {
-    // console.log("options:", options);
-    // options.modules = [...new Set(options.modules)];
-
-    // for (const name in core) {
-    //   console.log(name);
-    //   addImports({
-    //     from: "@mjsz-vbr-elements/core",
-    //     name,
-    //   });
-    // }
-
-    // nuxt.options.vite.resolve = defu(nuxt.options.vite.resolve, {
-    //   dedupe: ['vue'],
-    // })
-
-    // nuxt.options.build.transpile.push(/@mjsz-vbr-elements\/core/);
-
-    // addImportsSources({
-    //   from: "@mjsz-vbr-elements/core",
-    //   imports: ["utils", "components", "compsables", "utils", "columns"],
-    // });
-
     const pkg = await readPackageJSON(nuxt.options.rootDir);
     const coreDeps = Object.keys({
       ...pkg.dependencies,
       ...pkg.devDependencies,
     }).filter((d) => d.startsWith("@mjsz-vbr-elements/"));
 
-    const modules = [];
+    const modules: Modules[] = [];
 
     for (const mod of new Set([...coreDeps])) {
       if (
@@ -71,18 +48,6 @@ export default defineNuxtModule<ModuleOptions>({
       const entry = await resolvePath(mod);
       if (entry === mod) continue;
 
-      // const imports = findExportNames(await readFile(entry, "utf8"));
-
-      // for (const name of imports) {
-      //   if (name.includes("CE") || name.match(/^[a-z]/)) continue;
-      //   console.log(name, mod);
-      //   addComponent({
-      //     name,
-      //     filePath: mod,
-      //     export: name,
-      //     mode: "client",
-      //   });
-      // }
       const name = mod.split("/")[1];
       modules.push({ name, package: mod });
     }
@@ -90,22 +55,17 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.vue.compilerOptions.isCustomElement = (tag) =>
       tag.startsWith("mjsz-vbr-");
 
-    // nuxt.options.runtimeConfig.public.mjsz = defu(
-    //   nuxt.options.runtimeConfig.public.mjsz as Required<ModuleOptions>,
-    //   options
-    // );
-
     addTemplate({
       filename: "mjszVbrElements.imports.mjs",
       getContents: () => generateImports(options, modules),
-      write: true,
+      write: false,
     });
 
     addPlugin({ src: resolve("./runtime/plugin"), mode: "client" });
   },
 });
 
-const generateImports = ({ apiKey }: ModuleOptions, modules) => `
+const generateImports = ({ apiKey }: ModuleOptions, modules: Modules[]) => `
   import MjszVbrElementsCore from "@mjsz-vbr-elements/core";
 
   ${modules
