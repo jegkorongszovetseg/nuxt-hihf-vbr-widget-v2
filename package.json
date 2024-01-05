@@ -2,7 +2,6 @@
   "name": "@mjsz-vbr-elements/nuxt",
   "version": "0.0.1",
   "description": "Nuxt module for Data visualization for MJSZ VBR",
-  "repository": "https://github.com/jegkorongszovetseg/nuxt-hihf-vbr-widget-v2.git",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -22,16 +21,15 @@
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "release": "pnpm run lint && pnpm run test && pnpm run prepack && changelogen --release && pnpm publish && git push --follow-tags",
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
   "dependencies": {
+    "@mjsz-vbr-elements/core": "^2.2.1",
     "@nuxt/kit": "^3.8.2",
-    "defaults-deep": "^0.2.4",
     "defu": "^6.1.3",
-    "mlly": "^1.4.2",
     "pkg-types": "^1.0.3"
   },
   "devDependencies": {

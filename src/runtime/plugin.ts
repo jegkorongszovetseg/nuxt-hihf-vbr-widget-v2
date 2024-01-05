@@ -1,4 +1,4 @@
-import { defineNuxtPlugin, useRuntimeConfig } from "#app";
+import { defineNuxtPlugin } from "#app";
 import create from '#build/mjszVbrElements.imports.mjs';
 
 export default defineNuxtPlugin((nuxtApp) => {
