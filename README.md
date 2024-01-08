@@ -1,58 +1,50 @@
-<!--
-Get your module up and running quickly.
-
-Find and replace all on all files (CMD+SHIFT+F):
-- Name: My Module
-- Package name: my-module
-- Description: My new Nuxt module
--->
-
-# My Module
+# @mjsz-vbr-elements/nuxt
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-My new Nuxt module for doing amazing things.
+Nuxt module for Data visualization from MJSZ VBR
 
-- [✨ &nbsp;Release Notes](/CHANGELOG.md)
-<!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/my-module?file=playground%2Fapp.vue) -->
-<!-- - [📖 &nbsp;Documentation](https://example.com) -->
+A használathoz hozzá kell adni két alap csomagot (`@mjsz-vbr-elements/nuxt` `@mjsz-vbr-elements/core`) és a kivánt elemenket (`@mjsz-vbr-elements/elements`):
 
-## Features
+::: code-group
 
-<!-- Highlight some of the features your module provide here -->
-- ⛰ &nbsp;Foo
-- 🚠 &nbsp;Bar
-- 🌲 &nbsp;Baz
-
-## Quick Setup
-
-1. Add `my-module` dependency to your project
-
-```bash
-# Using pnpm
-pnpm add -D my-module
-
-# Using yarn
-yarn add --dev my-module
-
-# Using npm
-npm install --save-dev my-module
+```bash [npm]
+npm install @mjsz-vbr-elements/nuxt @mjsz-vbr-elements/core @mjsz-vbr-elements/elements
 ```
 
-2. Add `my-module` to the `modules` section of `nuxt.config.ts`
+```bash [pnpm]
+pnpm add @mjsz-vbr-elements/nuxt @mjsz-vbr-elements/core @mjsz-vbr-elements/elements
+```
 
-```js
+:::
+
+::: info
+A további elérhető csomagokat [itt](#packages) találáod. Ha újabb csomagot szeretnél hozzáadni csak telepítened kell és máris eléehető lesz az alkalmazásban.
+:::
+
+```ts [nuxt.config.ts]
+// nuxt.config.ts
 export default defineNuxtConfig({
-  modules: [
-    'my-module'
-  ]
-})
+  modules: ["@mjsz-vbr-elements/nuxt"],
+
+  mjszVbrElements: {
+    apiKey: process.env.NUXT_VBR_API_KEY,
+  },
+});
 ```
 
-That's it! You can now use My Module in your Nuxt app ✨
+## Elérhető package-ek: {#packages}
+
+| Típus      | Link                                                                                         |
+| ---------- | -------------------------------------------------------------------------------------------- |
+| Core       | [@mjsz-vbr-elements/core](https://www.npmjs.com/package/@mjsz-vbr-elements/core)             |
+| Elements   | [@mjsz-vbr-elements/elements](https://www.npmjs.com/package/@mjsz-vbr-elements/elements)     |
+| Extended   | [@mjsz-vbr-elements/extended](https://www.npmjs.com/package/@mjsz-vbr-elements/extended)     |
+| Liga       | [@mjsz-vbr-elements/liga](https://www.npmjs.com/package/@mjsz-vbr-elements/liga)             |
+| GameCenter | [@mjsz-vbr-elements/gamecenter](https://www.npmjs.com/package/@mjsz-vbr-elements/gamecenter) |
 
 ## Development
 
@@ -81,14 +73,12 @@ npm run release
 ```
 
 <!-- Badges -->
+
 [npm-version-src]: https://img.shields.io/npm/v/my-module/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-version-href]: https://npmjs.com/package/my-module
-
 [npm-downloads-src]: https://img.shields.io/npm/dm/my-module.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-downloads-href]: https://npmjs.com/package/my-module
-
 [license-src]: https://img.shields.io/npm/l/my-module.svg?style=flat&colorA=18181B&colorB=28CF8D
 [license-href]: https://npmjs.com/package/my-module
-
 [nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
 [nuxt-href]: https://nuxt.com
