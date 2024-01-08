@@ -9,19 +9,15 @@ Nuxt module for Data visualization from MJSZ VBR
 
 A használathoz hozzá kell adni két alap csomagot (`@mjsz-vbr-elements/nuxt` `@mjsz-vbr-elements/core`) és a kivánt elemenket (`@mjsz-vbr-elements/elements`):
 
-::: code-group
-
-```bash [npm]
+```bash
+# Using npm
 npm install @mjsz-vbr-elements/nuxt @mjsz-vbr-elements/core @mjsz-vbr-elements/elements
-```
 
-```bash [pnpm]
+# Using pnpm
 pnpm add @mjsz-vbr-elements/nuxt @mjsz-vbr-elements/core @mjsz-vbr-elements/elements
 ```
 
-:::
-
-A további elérhető csomagokat [itt](#elérhető-package-ek-packages) találáod. Ha újabb csomagot szeretnél hozzáadni csak telepítened kell és máris eléehető lesz az alkalmazásban.
+A további elérhető csomagokat [itt](#elérhető-package-ek) találod. Ha újabb csomagot szeretnél hozzáadni csak telepítened kell és máris eléehető lesz az alkalmazásban.
 
 ```ts [nuxt.config.ts]
 // nuxt.config.ts
