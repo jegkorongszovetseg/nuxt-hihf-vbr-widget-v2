@@ -10,8 +10,25 @@
   "devDependencies": {
     "nuxt": "latest"
   },
-  "dependencies": {
-    "@mjsz-vbr-elements/core": "^2.2.1",
-    "@mjsz-vbr-elements/elements": "^2.2.1"
+  "peerDependencies": {
+    "@mjsz-vbr-elements/core": "^2.2.0",
+    "@mjsz-vbr-elements/elements": "^2.2.0",
+    "@mjsz-vbr-elements/extended": "^2.2.0",
+    "@mjsz-vbr-elements/liga": "^2.2.0",
+    "@mjsz-vbr-elements/gamecenter": "^2.2.0"
+  },
+  "peerDependenciesMeta": {
+    "@mjsz-vbr-elements/elements": {
+      "optional": true
+    },
+    "@mjsz-vbr-elements/extended": {
+      "optional": true
+    },
+    "@mjsz-vbr-elements/liga": {
+      "optional": true
+    },
+    "@mjsz-vbr-elements/gamecenter": {
+      "optional": true
+    }
   }
 }
