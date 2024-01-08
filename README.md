@@ -68,7 +68,7 @@ npm run release
 
 <!-- Badges -->
 
-[npm-version-src]: https://img.shields.io/npm/v@mjsz-vbr-elements/nuxt/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-version-src]: https://img.shields.io/npm/v/@mjsz-vbr-elements/nuxt/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-version-href]: https://npmjs.com/package/@mjsz-vbr-elements/nuxt
 [npm-downloads-src]: https://img.shields.io/npm/dm/@mjsz-vbr-elements/nuxt.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-downloads-href]: https://npmjs.com/package/@mjsz-vbr-elements/nuxt
