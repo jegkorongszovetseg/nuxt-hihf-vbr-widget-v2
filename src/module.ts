@@ -17,17 +17,17 @@ export interface ModuleOptions {
 
 export interface Modules {
   name: string;
-  package: any;
+  package: string;
 }
 
 const { resolve } = createResolver(import.meta.url);
 
-export default defineNuxtModule<ModuleOptions>({
+export default defineNuxtModule<ModuleOptions>().with({
   meta: {
     name: "@mjsz-vbr-elements/nuxt",
     configKey: "mjszVbrElements",
     compatibility: {
-      nuxt: "^3",
+      nuxt: "^4.6.0",
     },
   },
   defaults: {
@@ -38,6 +38,7 @@ export default defineNuxtModule<ModuleOptions>({
     const coreDeps = Object.keys({
       ...pkg.dependencies,
       ...pkg.devDependencies,
+      ...pkg.peerDependencies,
     }).filter((d) => d.startsWith("@mjsz-vbr-elements/"));
 
     const modules: Modules[] = [];
@@ -48,7 +49,7 @@ export default defineNuxtModule<ModuleOptions>({
         mod === "@mjsz-vbr-elements/nuxt"
       )
         continue;
-      const entry = await resolvePath(mod);
+      const entry = await resolvePath(mod, { cwd: nuxt.options.rootDir });
       if (entry === mod) continue;
 
       const name = mod.split("/")[1];
@@ -76,7 +77,7 @@ const generateImports = ({ apiKey }: ModuleOptions, modules: Modules[]) => `
     .join("\n")}
 
   const create = (vueApp) => vueApp.use(MjszVbrElementsCore, { modules: [${modules.map(
-    (module) => module.name
+    (module) => module.name,
   )}], apiKey: '${apiKey}'})
 
   export default create;

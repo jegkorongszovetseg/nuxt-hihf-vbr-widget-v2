@@ -8,14 +8,14 @@
     "generate": "nuxi generate"
   },
   "devDependencies": {
-    "nuxt": "latest"
+    "nuxt": "4.6.2"
   },
   "peerDependencies": {
-    "@mjsz-vbr-elements/core": "^2.2.0",
-    "@mjsz-vbr-elements/elements": "^2.2.0",
-    "@mjsz-vbr-elements/extended": "^2.2.0",
-    "@mjsz-vbr-elements/liga": "^2.2.0",
-    "@mjsz-vbr-elements/gamecenter": "^2.2.0"
+    "@mjsz-vbr-elements/core": "^2.49.2",
+    "@mjsz-vbr-elements/elements": "^2.49.2",
+    "@mjsz-vbr-elements/extended": "^2.49.2",
+    "@mjsz-vbr-elements/liga": "^2.49.2",
+    "@mjsz-vbr-elements/gamecenter": "^2.49.2"
   },
   "peerDependenciesMeta": {
     "@mjsz-vbr-elements/elements": {

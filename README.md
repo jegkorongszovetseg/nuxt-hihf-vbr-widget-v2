@@ -7,6 +7,11 @@
 
 Nuxt module for Data visualization from MJSZ VBR
 
+## Requirements
+
+- Nuxt 4.6.2 or a compatible Nuxt 4 release.
+- Node.js `^22.22.3 || ^24.15.0 || >=26.0.0`.
+
 A használathoz hozzá kell adni két alap csomagot (`@mjsz-vbr-elements/nuxt` `@mjsz-vbr-elements/core`) és a kivánt elemenket (`@mjsz-vbr-elements/elements`):
 
 ```bash
